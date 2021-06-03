@@ -7,7 +7,7 @@
     <title>Bloggy</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
-<body class="bg-gray-200">
+<body class="bg-gray-200 mb-5">
     <nav class="p-6 bg-white flex justify-between mb-6">
         <ul class="flex items-center">
             <li>

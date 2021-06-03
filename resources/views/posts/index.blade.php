@@ -14,11 +14,28 @@
 
             @if ($posts->count())
                 @foreach ($posts as $post)
-                    <div class="mb-4">
-                        <a href="" class="font-bold"></a>
+                    <div class="mb-4 mt-4">
+                        <a href="" class="font-bold mt-3">{{ $post->user->name }}</a><span class="text-gray-600 text-sm ml-2">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
                     </div>
+
+                    <p class="mb-2">{{$post->body}}</p>
+
+                    <div class="flex item-center mb-4">
+                        <form action="" method="post" class="mr-3">
+                            @csrf
+                            <button type="submit" class="text-blue-500">Like</button>
+                        </form>
+                        <form action="" method="post" class="mr-1">
+                            @csrf
+                            <button type="submit" class="text-blue-500">Unlike</button>
+                        </form>
+                    </div>
+                    <hr>
                 @endforeach
+                <div class="mb-4 mt-4"></div>
+                <p id="count-posts">{{ $posts->links() }}</p>
             @else
+                <p class="text-bold text-red-300">There are no posts</p>
             @endif
         </div>
     </div>

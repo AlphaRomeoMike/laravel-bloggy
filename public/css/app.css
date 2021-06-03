@@ -11,6 +11,10 @@ Document
 Use a better box model (opinionated).
 */
 
+p #count-posts {
+  font-size: 10px !important;
+}
+
 *,
 ::before,
 ::after {
