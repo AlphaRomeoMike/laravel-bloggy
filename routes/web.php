@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\PostController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\PostController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\PostLikeController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\DashboardController;
 
@@ -41,5 +42,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
 //Posts
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::post('/posts', [PostController::class, 'store']);
+
+// PostLikes
+Route::post('/posts/{id}/likes', [PostLikeController::class, 'store'])->name('posts.likes');
+
 // Logout
-Route::post ('/logout', [LogoutController::class, 'logout'])->name('logout');
+Route::post ('/logout', [LogoutController::class, 'store'])->name('logout');
