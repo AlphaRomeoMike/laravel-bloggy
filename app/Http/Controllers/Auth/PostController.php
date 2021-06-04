@@ -8,9 +8,14 @@ use App\Http\Controllers\Controller;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
+
     public function index()
     {
-        $posts = Post::get();
+        $posts = Post::with(['user', 'likes']);
         return view('posts.index',[
             'posts'     => Post::paginate(15)
         ]);
@@ -27,5 +32,8 @@ class PostController extends Controller
         return back();
     }
 
-    
+    public function delete(Post $posts)
+    {
+        dd($posts);
+    }   
 }

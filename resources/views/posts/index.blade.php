@@ -11,7 +11,7 @@
                     <button type="submit" class="bg-blue-500 text-white px-2 py-2 rounded font-medium w-full">Post</button>
                 </div>
             </form>
-
+            
             @if ($posts->count())
                 @foreach ($posts as $post)
                     <div class="mb-4 mt-4">
@@ -19,8 +19,17 @@
                     </div>
 
                     <p class="mb-2">{{$post->body}}</p>
+                    
+                    <span>
+                        <form action="{{ route('posts', $post) }}" method="post" class="mb-3">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-red-500">Delete</button>
+                        </form>
+                    </span>
 
                     <div class="flex item-center mb-4">
+                    @auth
                         @if (!$post->likedBy(auth()->user()))
                         <form action="{{ route('posts.likes', $post) }}" method="post" class="mr-3">
                             @csrf
@@ -34,6 +43,7 @@
                             <button type="submit" class="text-blue-500">Unlike</button>
                         </form>
                         @endif
+                    @endauth
                         <span class="ml-3">{{ $post->likes->count() }} {{ Str::plural('like', $post->likes->count()) }}</span>
                     </div>
                     <hr>

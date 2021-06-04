@@ -9,7 +9,7 @@ use App\Http\Controllers\Controller;
 
 class PostLikeController extends Controller
 {
-    public function __constuct()
+    public function __construct()
     {
         $this->middleware(['auth']);
     }
