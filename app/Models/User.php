@@ -53,4 +53,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
+
+    /**
+     * Get all of the comments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function recievedLikes()
+    {
+        return $this->hasManyThrough(Like::class, Post::class);
+    }
+
 }
